@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'for_funsies/css/skeleton.css' %}">
+        <link rel="stylesheet" href="{% static 'for_funsies/css/normalize.css' %}">
+        <link rel="stylesheet" href="{% static 'for_funsies/css/index.css' %}">
+        <title>Create a Product</title>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="header">
+                <h2>Create a new Wish List Item</h2>
+                    <a href="/dashboard">Home</a> | <a href="/logout">Logout</a>
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
+            <form action="/wish_items/create_item" method="post">
+                {% csrf_token %}
+                <label for="name">Item/Product</label>
+                <input type="text" name="name">
+                <input type="submit" value="Add">
+            </form>
+        </div>
+    </body>
+</html>
